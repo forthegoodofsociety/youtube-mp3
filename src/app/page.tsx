@@ -26,12 +26,16 @@ export default function Home() {
 
     const linksArray = linksStringWithoutSpaces.split(",");
 
+    const parsedArray = linksArray.map((link: string) => {
+      return link.split("=")[1];
+    });
+
     const response = await fetch("/api/youtube", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ links: linksArray }),
+      body: JSON.stringify({ links: parsedArray }),
     });
 
     const { downloadLinks } = await response.json();

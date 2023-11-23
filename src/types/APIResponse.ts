@@ -1,6 +1,8 @@
 export type APIReponse = {
-  title: string;
   link: string;
-  length: string;
-  size: string;
+  title: string;
+  progress: number;
+  duration: number;
+  status: string;
+  msg: string;
 };

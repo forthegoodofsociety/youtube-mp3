@@ -5,17 +5,16 @@ import type { APIReponse } from "../../../types/APIResponse";
 export async function POST(request: Request) {
   const { links } = await request.json();
 
+  console.log("this is links");
+  console.log(links);
   const requests = links.map((url: APIReponse) => {
     const options = {
       method: "GET",
-      url: "https://youtube-mp3-downloader2.p.rapidapi.com/ytmp3/ytmp3/custom/",
-      params: {
-        url: url,
-        quality: "320",
-      },
+      url: "https://youtube-mp36.p.rapidapi.com/dl",
+      params: { id: url },
       headers: {
         "X-RapidAPI-Key": "a91211aea6msh3579ba254a2acdbp18aa5fjsnc1fda1c456bb",
-        "X-RapidAPI-Host": "youtube-mp3-downloader2.p.rapidapi.com",
+        "X-RapidAPI-Host": "youtube-mp36.p.rapidapi.com",
       },
     };
 
@@ -24,6 +23,7 @@ export async function POST(request: Request) {
 
   try {
     const data = await Promise.all(requests);
+    console.log(data);
     return new Response(JSON.stringify({ downloadLinks: data }));
   } catch (error) {
     console.error(error);
